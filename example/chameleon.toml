@@ -1,0 +1,8 @@
+[chameleon]
+name="example"
+version="0"
+port=3147
+debug=true
+apps=[
+    "app1"
+]

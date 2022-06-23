@@ -11,7 +11,7 @@ Cmd::Cmd(int argc,char *argv[]){
 void Cmd::init(){
     BASE_DIR = "/";
     port = 80;
-    
+    root = get_current_dir_name();
 
     this->start();
 }

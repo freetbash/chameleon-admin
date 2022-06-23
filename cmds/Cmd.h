@@ -10,6 +10,7 @@ public:
     void init();
 private:
     void start();
+    void compare();
 
 };
 #endif

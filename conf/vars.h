@@ -32,5 +32,6 @@ extern std::string TEMPLATE_DIR;
 extern std::string STATIC_ROOT;
 extern std::string STATIC_DIR;
 extern std::string BASE_DIR;
+extern std::string root;
 extern bool DEBUG;
 #endif

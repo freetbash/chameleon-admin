@@ -1,6 +1,7 @@
 #include <utils/tools.h>
 // tools
 #include <regex>
+#include <fstream>
 #include <iostream>
 std::vector<std::string> ls(std::string path){
     DIR *dp;
@@ -85,8 +86,8 @@ std::vector<std::string> split(std::string s, std::string d) {
 std::vector<std::string> readlines_fromfile(std::string file_path){
     std::vector<std::string> temp;
     std::string query;
-    std::ifstream in(file_path);
-    while (getline(in,query))
+    std::ifstream _in(file_path);
+    while (getline(_in,query))
     {
         temp.push_back(query);
     }
