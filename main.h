@@ -7,6 +7,6 @@ void new_project(std::string project_name);
 void new_app(std::string app_name);
 void show_help();
 void check();
-extern std::string _root;
+extern std::string cwd;
 extern std::string project_name;
 #endif

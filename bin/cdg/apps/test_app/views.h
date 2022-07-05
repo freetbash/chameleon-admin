@@ -1,0 +1,12 @@
+#ifndef PROJECT_test_app_VIEWS
+#define PROJECT_test_app_VIEWS
+#include <chameleon/http/HttpRequest.h>
+#include <chameleon/http/HttpResponse.h>
+// urls.cpp
+void test_app(_urls_init();
+
+namespace test_app{
+    void test(HttpRequest *request);
+}
+
+#endif
