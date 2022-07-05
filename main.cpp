@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 
 using namespace std;
 int main(int argc, char *argv[]){
@@ -15,8 +16,13 @@ int main(int argc, char *argv[]){
                 cwd = get_current_dir_name();
                 new_project(argv[2]);
             }
-        }else{
-            show_help();
+        }else if(std::string(argv[1])==std::string("build")){
+            try{
+                std::string include_dir(argv[2]);
+                build(include_dir);
+            } catch (std::logic_error e1){
+                build("~/.ccao/starts/");
+            }
         }
     }else{
         show_help();
