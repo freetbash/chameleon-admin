@@ -1,8 +1,0 @@
-[chameleon]
-name="cdg"
-version="0"
-port=3147
-debug=true
-apps=[
-    "test_app"
-]

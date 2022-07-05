@@ -1,7 +1,7 @@
 #include <template/template.h>
 #include <views/views.h>
 void render(HttpRequest *request,std::string template_path,std::map<std::string,std::string> args){
-    std::string file_path = root+"/"+template_path;
+    std::string file_path = TEMPLATE_DIR+"/"+template_path;
     
     if(FileExists(file_path)){
         std::string origin_html = read_file(file_path);
@@ -14,8 +14,8 @@ void render(HttpRequest *request,std::string template_path,std::map<std::string,
 
 
 void file(HttpRequest *request,std::string file_path){
-    if(FileExists(root+"/"+file_path)){
-        HttpResponse(request,read_file(root+"/"+file_path));
+    if(FileExists(STATIC_DIR+"/"+file_path)){
+        HttpResponse(request,read_file(STATIC_DIR+"/"+file_path));
     }else{
         notfound(request);
     }

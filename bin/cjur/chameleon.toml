@@ -1,0 +1,10 @@
+[chameleon]
+name="cjur"
+port=3147
+debug=true
+TEMPLATE_DIR="/template"
+STATIC_DIR="/static"
+STATIC_ROOT="/static"
+apps=[
+    "test_app"
+]

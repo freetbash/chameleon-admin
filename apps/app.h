@@ -5,7 +5,7 @@ class App{
 public:
     App(std::string name);
     std::string name;
-    void build();
+    void build(std::string include_dir);
 };
 
 

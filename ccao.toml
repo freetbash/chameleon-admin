@@ -1,5 +1,5 @@
 [project]
-name="chameleon-admin"
+name="chameleon"
 version="0"
 cppversion="c++11"
 debug=true

@@ -33,5 +33,6 @@ extern std::string STATIC_ROOT;
 extern std::string STATIC_DIR;
 extern std::string BASE_DIR;
 extern std::string root;
+extern std::string name;
 extern bool DEBUG;
 #endif

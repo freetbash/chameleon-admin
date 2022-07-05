@@ -4,13 +4,15 @@
 #include <vector>
 class Cmd{
 public:
-    std::string config_path;
-    int port;
+    std::string op;
+    std::vector<std::string> args;
     Cmd(int argc,char *argv[]);
+    int port;
     void init();
+    void compare();
+    void show_help();
 private:
     void start();
-    void compare();
 
 };
 #endif

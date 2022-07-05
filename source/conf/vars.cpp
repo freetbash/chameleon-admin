@@ -20,3 +20,4 @@ std::string STATIC_ROOT;
 std::string STATIC_DIR;
 std::string BASE_DIR;
 std::string root;
+std::string name;

@@ -1,19 +1,47 @@
 #include <cmds/Cmd.h>
+#include <apps/app.h>
 #include <utils/tools.h>
+#include <utils/toml.h>
 #include <conf/vars.h>
 #include <iostream>
 #include <unistd.h>
 
 Cmd::Cmd(int argc,char *argv[]){
-    ;
+    if (argc<2) {
+        std::cout<<"Please enter '"<<argv[0]<<" help' to check your args."<<std::endl;
+        exit(-3);
+    }
+    
+    // ccao     new     app         app_name
+    // agrv[0]  argv[1] argv[2]     argv[3]
+    //          op      vector[0]   vector[1]
+    this->op=argv[1];
+    
+    for (int i = 2; i<argc; i++){
+        this->args.push_back(argv[i]);
+    }
+    
 }
-
 void Cmd::init(){
-    BASE_DIR = "/";
-    port = 80;
-    root = get_current_dir_name();
+    root=get_current_dir_name();
+    const toml::value data = toml::parse(root+"/chameleon.toml");
+    const auto project_data = toml::find(data, "chameleon");
+    name = toml::find<std::string>(project_data, "name");
+    DEBUG = toml::find<bool>(project_data,"debug");
+    
+    TEMPLATE_DIR = root + toml::find<std::string>(project_data,"TEMPLATE_DIR");
+    STATIC_DIR = root + toml::find<std::string>(project_data,"STATIC_DIR");
+    STATIC_ROOT = toml::find<std::string>(project_data,"STATIC_ROOT");
 
-    this->start();
+    port = toml::find<int>(project_data,"port");
+    for (std::string app :toml::find<std::vector<std::string>>(project_data, "apps")){
+            INSTALLED_APPS.push_back(
+                App(app)
+            );
+        }
+
+
+    
 }
 
 void Cmd::start(){
@@ -21,4 +49,20 @@ void Cmd::start(){
     server->Receiver();
 }
 
+void Cmd::compare(){
+    if(this->op == "run"){
+        this->start();
+    }else if(this->op == "help"){
+        this->show_help();
+    }else{
+        this->show_help();
+    }
 
+
+
+
+}
+
+void Cmd::show_help(){
+    log("manage run");
+}
