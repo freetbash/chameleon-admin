@@ -60,12 +60,12 @@ std::ofstream main;
 
 int main(int argc, char *argv[]){
     Cmd *cmd = new Cmd(argc,argv);
+    cmd->init();
     // urls init
     {
         chameleon_urls_init();
         test_app_urls_init();
     }
-    cmd->init();
     cmd->compare();
 
     return 0;
