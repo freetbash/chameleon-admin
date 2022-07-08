@@ -1,6 +1,6 @@
 #include <views/views.h>
 
-void notfound(HttpRequest *request){
+void Views::notfound(HttpRequest *request){
     HttpResponse *response = new HttpResponse;
     response->content="404 not found ";
     response->headers["Server"]=SERVER;

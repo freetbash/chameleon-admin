@@ -8,14 +8,12 @@
 #include <map>
 #include <regex>
 void UrlPatterns::match(HttpRequest *request){
+    
     std::string mode = contain(request,url_patterns);
-    if (mode == std::string("chameleon_not_found")){   
-        notfound(request);
-        return;
-    }
-
     void *fuck = url_patterns->patterns[mode];
     ((void (*)(HttpRequest *))fuck)(request);
+
+
 }
 
 std::string contain(HttpRequest *request, UrlPatterns *url_patterns){
@@ -30,6 +28,7 @@ std::string contain(HttpRequest *request, UrlPatterns *url_patterns){
         temp.clear();
         std::string mode = _.first;
         std::string ts = _.first;
+        std::cout << mode << std::endl;
         if(std::regex_match(path,std::regex(mode))){
             return mode;
         }
@@ -60,5 +59,5 @@ std::string contain(HttpRequest *request, UrlPatterns *url_patterns){
     
         }
     }
-        return std::string("chameleon_not_found");
+        return std::string("/chameleon_not_found");
 }

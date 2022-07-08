@@ -8,6 +8,7 @@ void new_project(std::string project_name){
     c_mkdir(project_dir+"/apps");
     c_mkdir(project_dir+"/temp");
     c_mkdir(project_dir+"/config");
+    c_mkdir(project_dir+"/static");
     c_mkdir(project_dir+"/template");
     std::ofstream chameleon;
     chameleon.open((project_dir+"/chameleon.toml"),std::ios::out);

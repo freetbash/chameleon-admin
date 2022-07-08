@@ -30,7 +30,7 @@ void FileResponse(HttpRequest *request,std::string file_path){
         log(" ["+request->method+"] "+request->ip+" ------------------><200>("+request->path+")| "+filetype);
         request->rm();
     }else{
-        notfound(request);
+        Views::notfound(request);
     }
 
     

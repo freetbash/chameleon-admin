@@ -8,7 +8,7 @@ void render(HttpRequest *request,std::string template_path,std::map<std::string,
         std::string new_html = html_translator(origin_html,args);
         HttpResponse(request,new_html);
     }else{
-        notfound(request);
+        Views::notfound(request);
     }
 }
 
@@ -17,6 +17,6 @@ void file(HttpRequest *request,std::string file_path){
     if(FileExists(STATIC_DIR+"/"+file_path)){
         HttpResponse(request,read_file(STATIC_DIR+"/"+file_path));
     }else{
-        notfound(request);
+        Views::notfound(request);
     }
 }
