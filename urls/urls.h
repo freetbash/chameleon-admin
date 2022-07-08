@@ -11,7 +11,7 @@ public:
     UrlPatterns *const path(std::string path,void *fuck);
 };
 std::string contain(HttpRequest *request,UrlPatterns *url_patterns);
-void initUrls();
+void chameleon_urls_init();
 
 
 

@@ -4,7 +4,7 @@
 #include <http/HttpResponse.h>
 #include <template/template.h>
 namespace Views{
-    void index(HttpRequest *request);
+    void chameleon(HttpRequest *request);
 }
 
 void notfound(HttpRequest *request);

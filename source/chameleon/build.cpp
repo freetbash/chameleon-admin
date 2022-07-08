@@ -3,6 +3,7 @@
 #include <apps/app.h>
 #include <utils/toml.h>
 #include <utils/tools.h>
+#include <utils/colors.h>
 #include <conf/vars.h>
 void build(std::string include_dir,std::string lib){
     const toml::value data = toml::parse(root+"/chameleon.toml");
@@ -15,8 +16,9 @@ void build(std::string include_dir,std::string lib){
     cmd="ccache g++ "+root+"/temp/*.o "+root+"/main.cpp "
        +" -I./ -I"+include_dir+" -I"+include_dir+"/chameleon"
        +" -L"+lib+" -lchameleon"
-       +" -o manage -std=c++11 -O3";
+       +" -o manage -std=c++11 -O3 -g";
     log("[*] "+cmd);
+    log(color("[+]Build ok! {\n\tmanage\n}\n",GREEN));
     check_error(system(cmd.c_str()));
 
 

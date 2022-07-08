@@ -54,6 +54,8 @@ void Cmd::compare(){
         this->start();
     }else if(this->op == "help"){
         this->show_help();
+    }else if(this->op=="urls"){
+        this->show_urls();
     }else{
         this->show_help();
     }
@@ -65,4 +67,11 @@ void Cmd::compare(){
 
 void Cmd::show_help(){
     log("manage run");
+    log("manage urls");
+}
+
+void Cmd::show_urls(){
+        for(auto url:url_patterns->patterns){
+            log(url.first);
+        }
 }

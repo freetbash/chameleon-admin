@@ -23,6 +23,7 @@ HttpRequest *NewHttpRequest(HttpServer *server){
     request->bad=false;
     request->nfd = accept(server->nfd,(sockaddr *)&temp_addr,&cl);
     request->ip = inet_ntoa(temp_addr.sin_addr);
+    log("Get new request");
     return request;
 }
 

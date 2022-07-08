@@ -24,7 +24,6 @@ HttpServer *HttpServer::build(int port){
         ret = setsockopt(temp->nfd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on) ); 
     bind(temp->nfd,(struct sockaddr *)temp->addr,sizeof(struct sockaddr));
     listen(temp->nfd,MAX_CLIENTS);
-    initUrls();
     log(
         color("[*]Start Chameleon at http://0.0.0.0:"+std::to_string(port)+"/",BLUE)
     );

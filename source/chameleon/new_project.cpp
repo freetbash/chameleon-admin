@@ -30,7 +30,7 @@ apps=[
 {setting << R""(#ifndef CHAMELEON_CONFIG_SETTINGS
 #define CHAMELEON_CONFIG_SETTINGS
 
-
+#include <chameleon/urls/urls.h>
 #include <chameleon/conf/vars.h>
 
 #include <config/views_urls.h>
@@ -43,7 +43,7 @@ std::ofstream urls;
     urls.open((project_dir+"/config/views_urls.h"),std::ios::out);
 {urls << R""(#ifndef CHAMELEON_CONFIG_VIEWS_URLS
 #define CHAMELEON_CONFIG_VIEWS_URLS
-
+#include <chameleon/views/views.h>
 #include <apps/test_app/views.h>
 
 
@@ -62,6 +62,7 @@ int main(int argc, char *argv[]){
     Cmd *cmd = new Cmd(argc,argv);
     // urls init
     {
+        chameleon_urls_init();
         test_app_urls_init();
     }
     cmd->init();

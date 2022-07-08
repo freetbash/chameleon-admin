@@ -11,6 +11,7 @@ public:
     void init();
     void compare();
     void show_help();
+    void show_urls();
 private:
     void start();
 

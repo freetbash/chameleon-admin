@@ -1,4 +1,5 @@
 #include <urls/urls.h>
+#include <vector>
 #include <views/views.h>
 #include <utils/tools.h>
 #include <conf/vars.h>
@@ -6,42 +7,56 @@
 #include <map>
 #include <regex>
 void UrlPatterns::match(HttpRequest *request){
-
     std::string mode = contain(request,url_patterns);
-    if(mode!="chameleon_not_found"){
+    if (mode != std::string("chameleon_not_found"))
+    {
         void *fuck = url_patterns->patterns[mode];
         ((void (*)(HttpRequest *))fuck)(request);
-    }else{
+    }
+    else
+    {
         notfound(request);
     }
 }
 
-std::string contain(HttpRequest *request,UrlPatterns *url_patterns){
+std::string contain(HttpRequest *request, UrlPatterns *url_patterns){
     std::smatch results;
-	std::string path=request->path;//"/asec/<asdasd>/<name>/<id>/";// --> /asec/(.*?)/(.*?)             /asec/qwexqwc/2
-	// url path /asec/<name>  -> /asec/(.*?)
-    for(auto _:url_patterns->patterns){
-	    std::string url_p=_.first;
-	    std::regex dp("<([\\w-\\.]+)>");
-	    std::vector<std::string> headers;
-	    std::vector<std::string> values;
-	    std::string t=url_p;
-	    t=std::regex_replace(t,dp,"([\\w-\\.]+)");
-	    for (std::sregex_iterator it(url_p.begin(), url_p.end(), dp), end_it; it != end_it; ++it){
-		    headers.push_back((*it)[1]);
-	    }
-	    std::regex cs(t);
-        if(std::regex_match(path,results,cs)){
-            if(results.size()-1 == headers.size()){
+    std::vector<std::string> keys;
+    std::vector<std::string> values;
+    std::vector<std::string> temp;
+    std::string mode;
+    std::string path = request->path; //"/asec/<asdasd>/<name>/<id>/";// --> /asec/(.*?)/(.*?)             /asec/qwexqwc/2
+                                      // url path /asec/<name>  -> /asec/(.*?)
+    for (auto _ : url_patterns->patterns){
+        temp.clear();
+        std::string mode = _.first;
+        std::string ts = _.first;
+        std::regex rp("<(.*?)>");
+        if(std::regex_search(mode,results,rp)){
+            std::string::const_iterator iterStart = mode.begin();
+            std::string::const_iterator iterEnd   = mode.end();
+            while(std::regex_search(iterStart,iterEnd,results,rp)){
+                keys.push_back(results.str(1));
+                iterStart=results[0].second;
+                temp.push_back(results.str());
+            }
+            for(std::string __:temp){
+                ts= std::regex_replace(ts,std::regex(__),"(.*?)");
+            }
+            
+            if(std::regex_match(path,results,std::regex(ts))){
                 for(int i=1;i<results.size();i++){
-                    values.push_back(results[i]);
+                    values.push_back(results.str(i));
                 }
+
+                for(int i=0;i<keys.size();i++){
+                    request->path_data[keys[i]]=values[i];
+                }
+
+                return mode;
             }
-            for(int j=0;j<headers.size();j++){
-                request->path_data[headers[j]]=values[j];
-            }
-            return url_p;
+    
         }
     }
-    return "chameleon_not_found";
+        return std::string("chameleon_not_found");
 }

@@ -6,6 +6,7 @@ int main(int argc, char *argv[]){
     Cmd *cmd = new Cmd(argc,argv);
     // urls init
     {
+        chameleon_urls_init();
         test_app_urls_init();
     }
     cmd->init();
