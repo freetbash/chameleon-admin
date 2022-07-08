@@ -7,6 +7,7 @@ void test_app_urls_init();
 
 namespace test_app{
     void test(HttpRequest *request);
+    void test1(HttpRequest *request);
 }
 
 #endif

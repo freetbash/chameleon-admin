@@ -5,6 +5,7 @@
 #include <template/template.h>
 namespace Views{
     void chameleon(HttpRequest *request);
+    void handle_static(HttpRequest *request);
 }
 
 void notfound(HttpRequest *request);
