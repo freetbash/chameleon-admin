@@ -31,6 +31,9 @@ std::string contain(HttpRequest *request, UrlPatterns *url_patterns){
         temp.clear();
         std::string mode = _.first;
         std::string ts = _.first;
+        if(std::regex_match(path,std::regex(mode))){
+            return mode;
+        }
         std::regex rp("<(.*?)>");
         if(std::regex_search(mode,results,rp)){
             std::string::const_iterator iterStart = mode.begin();
